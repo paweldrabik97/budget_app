@@ -1,0 +1,54 @@
+# DotNet
+bin/
+obj/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# ASP.NET Secrets (do ochrony kluczy API)
+secrets.json
+secrets/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs/
+*.log
+
+# Visual Studio
+.vs/
+.vscode/
+*.DS_Store
+
+# Build artefacts
+dist/
+out/
+build/
+
+# Dependency directories
+node_modules/
+*.nuget/
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+Icon?
+*.stackdump
+
+# IDE and Editor-specific files
+.idea/
+*.iml
+*.swp
+*.bak
+*.tmp
+
+# Docker
+docker-compose.override.yml
+.docker/
+*.pid
