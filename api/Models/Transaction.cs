@@ -11,15 +11,13 @@ namespace api.Models
         [Required]
         [DataType(DataType.Currency)]
         public decimal Amount { get; set; }
-        [Required]
-        public int TypeId { get; set; }
+        
         [Required]
         public TransactionType Type { get; set; } = null!;
-        public int? CategoryId { get; set; }
+        
         public Category? Category { get; set; } = null!;
         public DateTime Date { get; set; } = DateTime.Now;
-        [Required]
-        public int UserId { get; set; }
+        
         [Required]
         public User User { get; set; } = null!;
         public DateTime CreatedOn { get; set; } = DateTime.Now;
