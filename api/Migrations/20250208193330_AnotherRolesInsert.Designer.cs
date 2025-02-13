@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using api.Data;
 
@@ -11,9 +12,11 @@ using api.Data;
 namespace api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250208193330_AnotherRolesInsert")]
+    partial class AnotherRolesInsert
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -51,15 +54,15 @@ namespace api.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "09ec5bc8-ae9a-4728-9791-188be26d77d8",
-                            ConcurrencyStamp = "1",
+                            Id = "5dc81b8d-4299-4894-a7b8-3a48582fcb7d",
+                            ConcurrencyStamp = "3fa42654-5e3f-4f2c-a819-4aaf9ec47998",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         },
                         new
                         {
-                            Id = "a26d83ad-30a7-4cbb-bc6b-80eaa01cdc04",
-                            ConcurrencyStamp = "2",
+                            Id = "7fcb0247-adea-404f-ad49-17539b8f132e",
+                            ConcurrencyStamp = "37fb5e3a-de88-45e2-a5ae-665cd2dab0c1",
                             Name = "User",
                             NormalizedName = "USER"
                         });
