@@ -20,6 +20,22 @@ namespace api.Mappers
                 CreatedOn = transaction.CreatedOn
             };
         }
-
+        public static Transaction ToTransactionFromCreateDto(this CreateTransactionRequestDto transactionDto)
+        {
+            return new Transaction
+            {
+                Description = transactionDto.Description,
+                Comment = transactionDto.Comment,
+                Amount = transactionDto.Amount,
+                TypeId = transactionDto.TypeId,
+                Type = transactionDto.Type,
+                CategoryId = transactionDto.CategoryId,
+                Category = transactionDto.Category,
+                Date = transactionDto.Date,
+                UserId = transactionDto.UserId,
+                User = transactionDto.User,
+                CreatedOn = transactionDto.CreatedOn
+            };
+        }
     }
 }

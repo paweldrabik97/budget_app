@@ -2,7 +2,7 @@
 using api.DTOs.Account;
 using api.Interfaces;
 using api.Models;
-using api.Service;
+using api.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
