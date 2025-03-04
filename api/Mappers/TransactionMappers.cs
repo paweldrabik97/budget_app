@@ -13,10 +13,11 @@ namespace api.Mappers
                 Description = transaction.Description,
                 Comment = transaction.Comment,
                 Amount = transaction.Amount,
-                Type = transaction.Type,
-                Category = transaction.Category,
+                TypeId = transaction.TypeId,
+                CategoryId = transaction.CategoryId,
                 Date = transaction.Date,
-                User = transaction.User,
+                UserId = transaction.UserId,
+                User = transaction.User.ToDto(),
                 CreatedOn = transaction.CreatedOn
             };
         }
@@ -28,12 +29,9 @@ namespace api.Mappers
                 Comment = transactionDto.Comment,
                 Amount = transactionDto.Amount,
                 TypeId = transactionDto.TypeId,
-                Type = transactionDto.Type,
                 CategoryId = transactionDto.CategoryId,
-                Category = transactionDto.Category,
                 Date = transactionDto.Date,
                 UserId = transactionDto.UserId,
-                User = transactionDto.User,
                 CreatedOn = transactionDto.CreatedOn
             };
         }

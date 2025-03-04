@@ -26,7 +26,7 @@ namespace api.Repositories
         {
             var transaction = await _context.Transactions.FirstOrDefaultAsync(t => t.Id == id);
 
-            if (transaction != null)
+            if (transaction == null)
             {
                 return null;
             }
@@ -38,12 +38,12 @@ namespace api.Repositories
 
         public async Task<Transaction?> GetTransactionByIdAsync(int id)
         {
-            return await _context.Transactions.FindAsync(id);
+            return await _context.Transactions.Include(t => t.User).FirstOrDefaultAsync(t => t.Id == id);
         }
 
         public async Task<List<TransactionDto>> GetTransactionsAsync()
         {
-            return await _context.Transactions.Select(t => t.ToDto()).ToListAsync();
+            return await _context.Transactions.Include(t => t.User).Select(t => t.ToDto()).ToListAsync();
         }
 
         public async Task<Transaction?> UpdateTransactionAsync(int id, UpdateTransactionRequestDto transactionDto)
@@ -59,12 +59,9 @@ namespace api.Repositories
             existingTransaction.Comment = transactionDto.Comment;
             existingTransaction.Amount = transactionDto.Amount;
             existingTransaction.TypeId = transactionDto.TypeId;
-            existingTransaction.Type = transactionDto.Type;
             existingTransaction.CategoryId = transactionDto.CategoryId;
-            existingTransaction.Category = transactionDto.Category;
             existingTransaction.Date = transactionDto.Date;
             existingTransaction.UserId = transactionDto.UserId;
-            existingTransaction.User = transactionDto.User;
             existingTransaction.CreatedOn = transactionDto.CreatedOn;
 
             await _context.SaveChangesAsync();
