@@ -10,5 +10,6 @@ namespace api.Interfaces
         Task<Transaction> CreateTransactionAsync(Transaction transactionModel);
         Task<Transaction?> UpdateTransactionAsync(int id, UpdateTransactionRequestDto transactionDto);
         Task<Transaction?> DeleteTransactionAsync(int id);
+        Task<bool> UserExists(string userId);
     }
 }

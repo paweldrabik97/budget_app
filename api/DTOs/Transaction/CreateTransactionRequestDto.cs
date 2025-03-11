@@ -11,6 +11,5 @@ namespace api.DTOs.Transaction
         public int? CategoryId { get; set; }
         public DateTime Date { get; set; } = DateTime.Now;
         public string UserId { get; set; } = string.Empty;
-        public DateTime CreatedOn { get; set; } = DateTime.Now;
     }
 }

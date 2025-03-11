@@ -14,14 +14,16 @@ namespace api.Mappers
                 Comment = transaction.Comment,
                 Amount = transaction.Amount,
                 TypeId = transaction.TypeId,
+                Type = transaction.Type.ToDto(),
                 CategoryId = transaction.CategoryId,
+                Category = transaction.Category?.ToDto(),
                 Date = transaction.Date,
                 UserId = transaction.UserId,
                 User = transaction.User.ToDto(),
                 CreatedOn = transaction.CreatedOn
             };
         }
-        public static Transaction ToTransactionFromCreateDto(this CreateTransactionRequestDto transactionDto)
+        public static Transaction ToTransactionFromCreateDto(this CreateTransactionRequestDto transactionDto, string userId)
         {
             return new Transaction
             {
@@ -31,8 +33,7 @@ namespace api.Mappers
                 TypeId = transactionDto.TypeId,
                 CategoryId = transactionDto.CategoryId,
                 Date = transactionDto.Date,
-                UserId = transactionDto.UserId,
-                CreatedOn = transactionDto.CreatedOn
+                UserId = userId
             };
         }
     }

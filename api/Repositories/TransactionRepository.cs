@@ -68,5 +68,10 @@ namespace api.Repositories
 
             return existingTransaction;
         }
+
+        public Task<bool> UserExists(string userId)
+        {
+            return _context.Users.AnyAsync(u => u.Id == userId);
+        }
     }
 }

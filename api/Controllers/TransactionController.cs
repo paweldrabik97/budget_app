@@ -2,9 +2,7 @@
 using api.DTOs.Transaction;
 using api.Interfaces;
 using api.Mappers;
-using api.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace api.Controllers
 {
@@ -12,12 +10,10 @@ namespace api.Controllers
     [ApiController]
     public class TransactionController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
         private readonly ITransactionRepository _transactionRepo;
 
-        public TransactionController(ApplicationDbContext context, ITransactionRepository transactionRepo)
+        public TransactionController(ITransactionRepository transactionRepo)
         {
-            _context = context;
             _transactionRepo = transactionRepo;
         }
 
@@ -31,7 +27,7 @@ namespace api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetTransaction([FromRoute] int id)
+        public async Task<IActionResult> GetTransactionById([FromRoute] int id)
         {
             var transaction = await _transactionRepo.GetTransactionByIdAsync(id);
 
@@ -43,12 +39,16 @@ namespace api.Controllers
             return Ok(transaction.ToDto());
         }
 
-        [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateTransactionRequestDto transactionDto)
+        [HttpPost("{userId}")]
+        public async Task<IActionResult> Create([FromBody] string userId, CreateTransactionRequestDto transactionDto)
         {
-            var transaction = transactionDto.ToTransactionFromCreateDto();
+            if (!await _transactionRepo.UserExists(userId))
+            {
+                return BadRequest("User does not exist!");
+            }
+            var transaction = transactionDto.ToTransactionFromCreateDto(userId);
             await _transactionRepo.CreateTransactionAsync(transaction);
-            return CreatedAtAction(nameof(GetTransaction), new { id = transaction.Id }, transaction);
+            return CreatedAtAction(nameof(GetTransactionById), new { id = transaction.Id }, transaction.ToDto());
         }
 
 
